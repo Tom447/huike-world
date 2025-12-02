@@ -35,6 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Slf4j
 @Component
@@ -64,7 +65,6 @@ public class MonthExcelReportTask {
 
         //1.1 获取每一天
         List<String> dateList = begin.datesUntil(end.plusDays(1)).map(localDate -> localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))).collect(Collectors.toList());
-
 
         //2. 查询数据库获取指定原始数据 . - 线索 , 商机 , 合同 , 销售额
         LocalDateTime beginTime = LocalDateTime.of(begin, LocalTime.MIN);

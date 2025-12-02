@@ -30,7 +30,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <huike.version>3.4.0</huike.version>
         <druid.version>1.2.8</druid.version>
         <bitwalker.version>1.21</bitwalker.version>
@@ -222,4 +222,19 @@
         </dependencies>
     </dependencyManagement>
 
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                    <release>11</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

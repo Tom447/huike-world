@@ -6,6 +6,7 @@ import com.huike.utils.StringUtils;
 import com.huike.web.service.TokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -22,11 +23,13 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     @Autowired
     private TokenService tokenService;
 
+
     /**
      * @return  true : 放行 , false : 拦截
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
         //1. 获取请求头中jwt令牌
         String token = tokenService.getToken(request);
 
