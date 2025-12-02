@@ -30,6 +30,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
+
         //1. 获取请求头中jwt令牌
         String token = tokenService.getToken(request);
 
