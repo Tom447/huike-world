@@ -1,0 +1,164 @@
+# 数据源配置
+spring:
+  profiles:
+    active: dev
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: ${spring.datasource.druid.url}
+    username: ${spring.datasource.druid.username}
+    password: ${spring.datasource.druid.password}
+    druid:
+      # 初始连接数
+      initialSize: 5
+      # 最小连接池数量
+      minIdle: 10
+      # 最大连接池数量
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      # 配置一个连接在池中最大生存的时间，单位是毫秒
+      maxEvictableIdleTimeMillis: 900000
+      # 配置检测连接是否有效
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      webStatFilter:
+        enabled: true
+      statViewServlet:
+        enabled: true
+        url-pattern: /druid/*
+        # 控制台管理用户名和密码
+        login-username: admin
+        login-password: 123456
+      filter:
+        stat:
+          enabled: true
+          # 慢SQL记录
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+  # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size: 10MB
+      # 设置总上传的文件大小
+      max-request-size: 20MB
+  main:
+    allow-bean-definition-overriding: true
+  # redis 配置
+  redis:
+    # 地址
+    host: ${spring.redis.host}
+    # 端口，默认为6379
+    port: ${spring.redis.port}
+    # 数据库索引
+    database: ${spring.redis.database}
+    # 密码
+    password: ${spring.redis.password}
+    # 连接超时时间
+    timeout: 10s
+    lettuce:
+      pool:
+        # 连接池中的最小空闲连接
+        min-idle: 0
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池的最大数据库连接数
+        max-active: 8
+        # #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  mail:
+    host: smtp.qq.com
+    username: 864421026@qq.com
+    password: cwnhxjlqitxcbceb
+    default-encoding: utf-8
+    port: 465
+    protocol: smtps
+
+
+
+# 项目相关配置
+huike:
+  # 名称
+  name: HuiKe
+  # 版本
+  version: 3.4.0
+  # 版权年份
+  copyrightYear: 2021
+  # 实例演示开关
+  demoEnabled: true
+  profile: E:\soft\uploadPath
+  # 获取ip地址开关
+  addressEnabled: false
+  # 验证码类型 math: 数字计算,  char: 字符验证
+  captchaType: math
+
+# 日志配置
+logging:
+  level:
+    com.huike: debug
+    org.springframework: warn
+
+# token配置
+token:
+    # 令牌自定义标识
+    header: Authorization
+    # 令牌密钥
+    secret: abcdefghijklmnopqrstuvwxyz
+    # 令牌有效期（默认30分钟）
+    expireTime: 30
+
+# MyBatis配置
+mybatis:
+    # 搜索指定包别名
+    typeAliasesPackage: com.huike.domain.*
+    # 配置mapper的扫描，找到所有的mapper.xml映射文件
+    mapperLocations: classpath*:mapper/*Mapper.xml
+    configuration:
+      #指定Mybatis所用日志的具体实现
+      log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+      #开启驼峰命名
+      map-underscore-to-camel-case: true
+      #允许JDBC支持自动生成主键
+      use-generated-keys: true
+
+# PageHelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+#admin策略 导入和转换全部交由admin来处理，由admin来分配线索和规则
+#rule策略 交由规则引擎来处理，项目一阶段不处理，单讲admin模式
+rule:
+  transfor: rule #转商机时的自动分配方式--rule: 基于规则来分片 admin: 先分配给管理员再进行二次分配
+  clue:
+    import: rule #导入时的自动分配方式--rule: 基于规则来分片 admin: 先分配给管理员再进行二次分配
+
+
+minio:
+  endpoint: ${minio.endpoint}
+  port:  ${minio.port}
+  access-key:  ${minio.access-key}
+  secret-key: ${minio.secret-key}
+  secure: ${minio.secure}
+  bucket-name: ${minio.bucket-name}

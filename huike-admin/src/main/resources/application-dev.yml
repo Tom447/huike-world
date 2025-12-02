@@ -1,0 +1,22 @@
+#数据库信息配置
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/huike_simple?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=Asia/Shanghai
+      username: root
+      password: root@1234
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 10
+    password: root@123456
+server:
+  port: 10010
+
+minio:
+  endpoint: 127.0.0.1
+  port: 9000
+  access-key: LecySE8A1cNcoPVTdmoe
+  secret-key: kj7tpYaFlxFUWqn6oWACsZ6C0O3vDnEa0h779udH
+  secure: false
+  bucket-name: crm

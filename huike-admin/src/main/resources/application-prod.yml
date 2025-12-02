@@ -1,0 +1,21 @@
+#数据库信息配置
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://192.168.150.200:3306/huike?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=Asia/Shanghai
+      username: root
+      password: 1234
+  redis:
+    host: 192.168.150.200
+    port: 6379
+    database: 10
+    password: 123456
+# Miniio配置
+minio:
+  endpoint: 192.168.150.200
+  port: 9000
+  accessKey: minioadmin
+  secretKey: minioadmin
+  secure: false
+  bucketName: huike-crm
+  configDir: /data/excel
